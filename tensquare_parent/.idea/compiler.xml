@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="tensquare_base" />
         <module name="tensquare_common" />
+        <module name="tensquare_qa" />
         <module name="tensquare_recruit" />
       </profile>
     </annotationProcessing>
@@ -16,6 +17,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="tensquare_base" options="-parameters" />
       <module name="tensquare_common" options="-parameters" />
+      <module name="tensquare_qa" options="-parameters" />
       <module name="tensquare_recruit" options="-parameters" />
     </option>
   </component>
