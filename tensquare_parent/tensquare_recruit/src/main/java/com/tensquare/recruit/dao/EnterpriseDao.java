@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
 
-public interface EnterpirseDao extends JpaRepository<Enterprise,String>, JpaSpecificationExecutor<Enterprise> {
+public interface EnterpriseDao extends JpaRepository<Enterprise,String>, JpaSpecificationExecutor<Enterprise> {
     public List<Enterprise> findByIshot(String ishot); //where ishot = ?
 
 }
