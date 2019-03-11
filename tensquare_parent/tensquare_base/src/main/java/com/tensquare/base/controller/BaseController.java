@@ -13,8 +13,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/label"
-)
+@RequestMapping("/label")
 public class BaseController {
     @Autowired
     private LabelService labelService;
