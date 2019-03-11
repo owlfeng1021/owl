@@ -25,6 +25,7 @@ public class ProblemController {
 	@Autowired
 	private ProblemService problemService;
 
+
 	@GetMapping("/newList/{labelId}/{page}/{size}")
 	public Result newList(@PathVariable String labelId ,@PathVariable int page,@PathVariable int size){
 		Page<Problem> problems = problemService.newList(labelId,page,size);
@@ -41,7 +42,6 @@ public class ProblemController {
 		Page<Problem> problems = problemService.waitList(labelId,page,size);
 		return new Result(true,StatusCode.OK ,"查询成功",new PageResult<Problem>(problems.getTotalElements(),problems.getContent()) );
 	}
-
 	/**
 	 * 查询全部数据
 	 * @return
@@ -50,7 +50,7 @@ public class ProblemController {
 	public Result findAll(){
 		return new Result(true,StatusCode.OK,"查询成功",problemService.findAll());
 	}
-
+	
 	/**
 	 * 根据ID查询
 	 * @param id ID
@@ -76,15 +76,15 @@ public class ProblemController {
 	}
 
 	/**
-	 * 根据条件查询
-	 * @param searchMap
-	 * @return
-	 */
-	@RequestMapping(value="/search",method = RequestMethod.POST)
-	public Result findSearch( @RequestBody Map searchMap){
-		return new Result(true,StatusCode.OK,"查询成功",problemService.findSearch(searchMap));
-	}
-
+     * 根据条件查询
+     * @param searchMap
+     * @return
+     */
+    @RequestMapping(value="/search",method = RequestMethod.POST)
+    public Result findSearch( @RequestBody Map searchMap){
+        return new Result(true,StatusCode.OK,"查询成功",problemService.findSearch(searchMap));
+    }
+	
 	/**
 	 * 增加
 	 * @param problem
@@ -94,7 +94,7 @@ public class ProblemController {
 		problemService.add(problem);
 		return new Result(true,StatusCode.OK,"增加成功");
 	}
-
+	
 	/**
 	 * 修改
 	 * @param problem
@@ -102,10 +102,10 @@ public class ProblemController {
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
 	public Result update(@RequestBody Problem problem, @PathVariable String id ){
 		problem.setId(id);
-		problemService.update(problem);
+		problemService.update(problem);		
 		return new Result(true,StatusCode.OK,"修改成功");
 	}
-
+	
 	/**
 	 * 删除
 	 * @param id
@@ -115,5 +115,5 @@ public class ProblemController {
 		problemService.deleteById(id);
 		return new Result(true,StatusCode.OK,"删除成功");
 	}
-
+	
 }
