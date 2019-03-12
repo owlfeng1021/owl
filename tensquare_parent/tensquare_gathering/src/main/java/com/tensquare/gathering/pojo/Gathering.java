@@ -16,8 +16,6 @@ public class Gathering implements Serializable{
 	@Id
 	private String id;//编号
 
-
-	
 	private String name;//活动名称
 	private String summary;//大会简介
 	private String detail;//详细说明
