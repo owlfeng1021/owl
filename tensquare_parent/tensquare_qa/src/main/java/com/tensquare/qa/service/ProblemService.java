@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -18,8 +19,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import org.springframework.util.StringUtils;
 import util.IdWorker;
 
 import com.tensquare.qa.dao.ProblemDao;
@@ -40,6 +43,8 @@ public class ProblemService {
 	@Autowired
 	private IdWorker idWorker;
 
+	@Autowired
+	private RedisTemplate redisTemplate;
 
 	public Page<Problem> newList(String labelId ,int page ,int size){
 		Pageable pageable=PageRequest.of(page-1,size);
@@ -93,7 +98,14 @@ public class ProblemService {
 	 * @return
 	 */
 	public Problem findById(String id) {
-		return problemDao.findById(id).get();
+		System.out.println("测试 1");
+		Problem problem =(Problem) redisTemplate.opsForValue().get("Problem_"+id);
+		if (problem==null){
+			problem=problemDao.findById(id).get();
+			redisTemplate.opsForValue().set("Problem_"+id,problem,100, TimeUnit.SECONDS);
+		}
+		System.out.println("测试 2");
+		return problem;
 	}
 
 	/**
@@ -118,6 +130,7 @@ public class ProblemService {
 	 * @param id
 	 */
 	public void deleteById(String id) {
+		redisTemplate.delete("Problem_"+id);
 		problemDao.deleteById(id);
 	}
 
