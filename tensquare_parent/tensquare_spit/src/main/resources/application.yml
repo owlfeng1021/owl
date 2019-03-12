@@ -8,3 +8,6 @@ spring:
     mongodb:
       database: spitdb
       host: 192.168.233.128
+  redis:
+    host: 192.168.233.128
+    port: 6379

@@ -7,6 +7,7 @@ import entity.Result;
 import entity.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 public class SpitController {
       @Autowired
       private SpitService spitService;
+      @Autowired
+      private RedisTemplate redisTemplate;
 
       @GetMapping("")
       public Result findAll(){
@@ -48,5 +51,15 @@ public class SpitController {
             Page<Spit>  pageData = spitService.findByParentId(parentid, page, size);
             return new PageResult<Spit>(pageData.getTotalElements(),pageData.getContent());
       }
+      @PutMapping("/thumbup/{spitId}")
+      public Result addThumbup(@PathVariable String spitId){
+            String userid="123";
+            if(redisTemplate.opsForValue().get("addThumbup_"+userid)!=null){
+                  return new Result(true, StatusCode.OK, "点赞成功");
+            }
 
+            spitService.addThumbup(spitId);
+            redisTemplate.opsForValue().set("addThumbup_"+userid,"1");
+            return new Result(true, StatusCode.OK, "点赞成功");
+      }
 }
