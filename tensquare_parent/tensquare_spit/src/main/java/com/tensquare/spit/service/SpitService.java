@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import util.IdWorker;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,22 @@ public class SpitService {
 
     public void save(Spit spit) {
         spit.set_id(new IdWorker().nextId() + "");
+        spit.setPublishtime(new Date());
+        spit.setVisits(0);//浏览量
+        spit.setShare(0);//分享数
+        spit.setThumbup(0);//点赞数
+        spit.setComment(0);//回复数
+        spit.setState("1");//状态码cc
+        //如果添加的吐槽有父节点 那么父节点的回复数要加一
+        if(spit.getParentid()!=null&&!"".equals(spit.getParentid())){
+            Query query=new Query();
+            query.addCriteria(Criteria.where("_id").is(spit.getParentid()));//找到父节点的id
+            Update update=new Update();
+            update.inc("comment",1);//然后加一 操作 inc
+            mongoTemplate.updateFirst(query,update,"spit");
+
+        }
+
         spitDao.save(spit);
     }
 
@@ -66,6 +83,5 @@ public class SpitService {
         update.inc("thumbup",1);
         mongoTemplate.updateFirst(query ,update,"spit");
     }
-
 
 }

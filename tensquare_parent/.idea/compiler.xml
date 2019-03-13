@@ -12,6 +12,7 @@
         <module name="tensquare_gathering" />
         <module name="tensquare_qa" />
         <module name="tensquare_recruit" />
+        <module name="tensquare_search" />
         <module name="tensquare_spit" />
       </profile>
     </annotationProcessing>
@@ -24,6 +25,7 @@
       <module name="tensquare_gathering" options="-parameters" />
       <module name="tensquare_qa" options="-parameters" />
       <module name="tensquare_recruit" options="-parameters" />
+      <module name="tensquare_search" options="-parameters" />
       <module name="tensquare_spit" options="-parameters" />
     </option>
   </component>

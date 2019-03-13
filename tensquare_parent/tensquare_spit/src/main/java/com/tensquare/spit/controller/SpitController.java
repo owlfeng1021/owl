@@ -55,7 +55,7 @@ public class SpitController {
       public Result addThumbup(@PathVariable String spitId){
             String userid="123";
             if(redisTemplate.opsForValue().get("addThumbup_"+userid)!=null){
-                  return new Result(true, StatusCode.OK, "点赞成功");
+                  return new Result(false, StatusCode.REPERROR, "不能重复点赞");
             }
 
             spitService.addThumbup(spitId);
