@@ -4,7 +4,6 @@ server:
 spring:
   application:
     name: tensquare_search
-
   data:
     elasticsearch:
-      cluster-nodes: 172.0.0.1:9300
+      cluster-nodes: 192.168.233.128:9300

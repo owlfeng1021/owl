@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Bean;
 import util.IdWorker;
 
 @SpringBootApplication
-public class SearchApplicaion {
+public class SearchApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SpringApplication.class,args);
+        SpringApplication.run(SearchApplication.class,args);
     }
     @Bean
     public IdWorker idWorker(){
