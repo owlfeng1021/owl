@@ -17,3 +17,8 @@ spring:
   spring:
     rabbitmq:
       host: 192.168.233.128
+
+  jwt:
+    config:
+      key: sakura
+      ttl: 3600000
