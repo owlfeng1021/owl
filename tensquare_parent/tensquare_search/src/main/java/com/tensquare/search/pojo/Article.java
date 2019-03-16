@@ -66,4 +66,7 @@ public class Article implements Serializable {
     public void setState(String state) {
         this.state = state;
     }
+
+
+
 }
