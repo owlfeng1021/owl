@@ -76,4 +76,17 @@ public class UsersService {
     }
 
 
+    public void delete(String id) {
+        String token=(String)httpServletRequest.getAttribute("claims_admin");
+        if(token==null || "".equals(token)){
+            throw new RuntimeException("权限不足");
+        }
+        userDao.deleteById(id);
+    }
+
+    public int updatefanscountandfollowcount(int x, String userid, String friendid) {
+        userDao.updatefanscount(x,friendid);
+        userDao.updatefollowcount(x,userid);
+        return 1;
+    }
 }

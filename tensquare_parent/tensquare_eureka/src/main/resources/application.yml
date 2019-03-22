@@ -1,0 +1,11 @@
+server:
+  port: 6868
+# 下面的意思是需不需要把当前模块注册到 eureka
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://172.0.0.1:${server.port}/eureka/
+  instance:
+    prefer-ip-address: true

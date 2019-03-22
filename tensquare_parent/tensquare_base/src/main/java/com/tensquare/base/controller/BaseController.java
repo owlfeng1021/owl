@@ -25,6 +25,7 @@ public class BaseController {
     }
     @GetMapping("/{labelId}")
     public Result findById(@PathVariable("labelId") String labelId){
+        System.out.println("test2222222222222222");
         return new Result(true,StatusCode.OK,"查询成功",labelService.findById(labelId));
     }
     @PostMapping()

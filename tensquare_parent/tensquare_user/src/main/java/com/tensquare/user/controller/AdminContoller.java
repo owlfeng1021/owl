@@ -32,7 +32,7 @@ public class AdminContoller {
         String token = jwtUtil.createJWT(loginCheck.getId(), loginCheck.getLoginname(), "admin");
         Map<String,String> map =new HashMap<>();
         map.put("token",token);
-        map.put("role","admin");
+        map.put("roles","admin");
         return new Result(true, StatusCode.OK, "登录成功",map );
 
     }
@@ -41,9 +41,9 @@ public class AdminContoller {
         adminService.save(admin);
         return new Result(true, StatusCode.OK, "添加用户成功" );
     }
-    @DeleteMapping("/{adminId}")
-    public Result delete(@PathVariable String adminId){
-        adminService.delete(adminId);
-        return new Result(true, StatusCode.OK, "删除成功" );
-    }
+//    @DeleteMapping("/{adminId}")
+//    public Result delete(@PathVariable String adminId){
+//        adminService.delete(adminId);
+//        return new Result(true, StatusCode.OK, "删除成功" );
+//    }
 }

@@ -24,10 +24,7 @@ public class AdminService {
     private AdminDao adminDao;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    @Autowired
-    private JwtUtil jwtUtil;
-    @Autowired
-    private HttpServletRequest httpServletRequest;
+
     public void save(Admin  admin){
         admin.setId( idWorker.nextId()+"");
         //密码加密
@@ -44,25 +41,5 @@ public class AdminService {
         return null;
     }
 
-    public void delete(String id) {
-        String authorization = httpServletRequest.getHeader("Authorization");
-        if (StringUtils.isEmpty(authorization)) {
-            throw new RuntimeException("权限不足 ！");
-        }
-        if (!authorization.startsWith("Bearer ")) {
-            throw new RuntimeException("权限不足 ！");
-        }
-        //得到 token
-        String token =  authorization.substring(7);
-        try {
-            Claims claims = jwtUtil.parseJWT(token);
-            String role = (String)claims.get("role");
-            if (role==null || !role.equals("admin")){
-                throw new RuntimeException("权限不足 ！");
-            }
-        }catch(Exception e){
 
-        }
-        adminDao.deleteById(id);
-    }
 }
