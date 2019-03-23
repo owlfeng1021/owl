@@ -1,0 +1,19 @@
+server:
+  port: 12000
+spring:
+  application:
+    name: tensquare-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/owl1/config-dev.git
+      label: master
+  rabbitmq:
+    host: 192.168.233.128
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+# 上面的git配置同样适用于GitHub

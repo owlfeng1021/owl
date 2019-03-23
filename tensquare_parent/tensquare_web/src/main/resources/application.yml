@@ -1,18 +1,14 @@
 server:
-  port: 9011
+  port: 9012
 spring:
   application:
-    name: tensquare-manager
+    name: tensquare-web
 eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:6868/eureka/
     instance:
       prefer‐ip‐address: true
-jwt:
-  config:
-    key: sakura
-    ttl: 3600000
 
 zuul:
   routes:
