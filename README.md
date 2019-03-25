@@ -1,9 +1,12 @@
 # tensquare
 ## tensquare_article	manager 使用了zuul	21 minutes ago
+### 使用了 euruka
 
 ## tensquare_base	manager 使用了zuul	21 minutes ago
+### 使用了 euruka rabbitmq actuator config 
 
 ## tensquare_common	2019/3/16 中午 14.25 上传	6 days ago
+### 
 
 ## tensquare_eureka	manager 使用了zuul	21 minutes ago
 
